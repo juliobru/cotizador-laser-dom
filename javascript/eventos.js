@@ -226,6 +226,7 @@ BotonCarritoCuad.addEventListener('click', () => {
             Acero = "Carbono";
         break;
     }
+
     carrito.push(new Platinadef('Cuadrada',Acero,Dim1,Dim2,Espesor,PrecioCorte,PrecioMaterial,cantidad));
     localStorage.setItem('carrito',JSON.stringify(carrito));
     
@@ -252,3 +253,17 @@ function limpiar(form) {
     BotonFlag =false;
     BotonFlagCarrito = false;
 }
+
+let vaciarcarrito = document.getElementById('vaciarCarro');
+vaciarcarrito.addEventListener('click', ()=> {
+    carrito = [];
+    localStorage.removeItem('carrito')
+    let tabla = document.getElementById('items');
+    tabla.innerHTML = '';
+
+})
+
+
+
+
+

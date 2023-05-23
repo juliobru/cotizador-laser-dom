@@ -1,9 +1,14 @@
 let btnEliminar =document.createElement('button');
+btnEliminar.type ="button";
 btnEliminar.className = 'btn btn-danger';
 btnEliminar.innerText = 'ELIMINAR';
 
 
 
+btnEliminar.addEventListener("click", ()=> {
+    cont++
+    console.log(cont)
+})
 
 btnEliminar.onclick = () => {
     console.log('ver')
@@ -36,8 +41,10 @@ function mostrarCarrito() {
  
             </tr>
             `;
+          
 
     })
+    console.log(btnEliminar)
 }
 
 

@@ -1,8 +1,10 @@
-let carrito = [];
+let carrito =[];
 
 let carritoVacio = localStorage.getItem('carrito');
+console.log(carrito)
 
-if(carritoVacio !== null) {
+if(carritoVacio) {
+    console.log('hola')
     carrito = JSON.parse(localStorage.getItem('carrito'));
     mostrarCarrito();
 }
