@@ -1,71 +1,73 @@
-let btnEliminar =document.createElement('button');
-btnEliminar.type ="button";
-btnEliminar.className = 'btn btn-danger';
-btnEliminar.innerText = 'ELIMINAR';
-
-
-
-btnEliminar.addEventListener("click", ()=> {
-    cont++
-    console.log(cont)
-})
-
-btnEliminar.onclick = () => {
-    console.log('ver')
-    carrito.splice(poscarrito,1);
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    mostrarCarrito()
-}
-
 
 function mostrarCarrito() {
     let tabla = document.getElementById('items');
+    
     tabla.innerHTML = '';
     carrito.forEach((item, index) => {
         pos= index + 1;
-        tabla.innerHTML = tabla.innerHTML +
-            `
-            <tr>
-                <td>${pos}</td>
-                <td>${item.Platina}</td>
-                <td>${item.Acero}</td>
-                <td>${item.Dim1}</td>
-                <td>${item.Dim2}</td>
-                <td>${item.espesor}</td>
-                <td>${item.PrecioCorte}</td>
-                <td>${item.PrecioMaterial}</td>
-                <td>${item.cantidad}</td>
-                <td>${item.unitarioN}</td>
-                <td>${item.parcialN}</td>
-                <td>${btnEliminar.outerHTML}</td>
  
-            </tr>
-            `;
-          
+  const row = document.createElement('tr'); ///creo la fila
+ 
+  let tdpos = document.createElement('td');
+  tdpos.textContent = pos;
+  row.appendChild(tdpos);
 
-    })
-    console.log(btnEliminar)
+  let tdPlatina = document.createElement('td');
+  tdPlatina.textContent = item.Platina;
+  row.appendChild(tdPlatina);
+
+ let tdAcero = document.createElement('td');
+  tdAcero.textContent = item.Acero;
+  row.appendChild(tdAcero);
+
+ let tdDim1 = document.createElement('td');
+  tdDim1.textContent = item.Dim1;
+  row.appendChild(tdDim1);
+
+ let tdDim2 = document.createElement('td');
+  tdDim2.textContent = item.Dim2;
+  row.appendChild(tdDim2);
+
+ let tdespesor = document.createElement('td');
+  tdespesor.textContent = item.espesor;
+  row.appendChild(tdespesor);
+
+  let tdPreciocorte = document.createElement('td');
+  tdPreciocorte.textContent = item.PrecioCorte;
+  row.appendChild(tdPreciocorte);
+
+  let tdPrecioMaterial = document.createElement('td');
+  tdPrecioMaterial.textContent = item.PrecioMaterial;
+  row.appendChild(tdPrecioMaterial);
+
+  let tdcantidad = document.createElement('td');
+  tdcantidad.textContent = item.cantidad;
+  row.appendChild(tdcantidad);
+
+  let tdunitarioN= document.createElement('td');
+  tdunitarioN.textContent = item.unitarioN;
+  row.appendChild(tdunitarioN);
+
+  let tdparcialN= document.createElement('td');
+  tdparcialN.textContent = item.parcialN;
+  row.appendChild(tdparcialN);
+
+  let btnEliminar = document.createElement('button');
+  btnEliminar.className = 'btn btn-danger';
+  btnEliminar.textContent = 'Eliminar';
+
+  btnEliminar.onclick = () => 
+  {
+    carrito.splice(index,1); 
+    mostrarCarrito();
+    localStorage.setItem('carrito',JSON.stringify(carrito));
 }
 
 
-
-
-
-/*
-btnEliminar.addEventListener('click' , () => {
-    carrito.splice(poscarrito,1);
-    localStorage.setItem('carrito',JSON.stringify(carrito));
-    mostrarCarrito();
-
-})
-*/
-
-//               <td><button type="button" class = "btn btn-danger" >ELIMINAR</button></td>
-
-/*
-td = document.createElement('td');
-td.appendChild(btnEliminar);
-row.appendChild(td);
-tabla.appendChild(row); */
+  let tdEliminar = document.createElement('td')
+  tdEliminar.appendChild(btnEliminar);
+  row.appendChild(tdEliminar);
+  tabla.appendChild(row);
+})}
 
 

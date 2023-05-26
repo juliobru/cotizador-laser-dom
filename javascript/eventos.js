@@ -96,7 +96,6 @@ LcuadradoInput.addEventListener('change', () => {
         LcuadradoInput.classList.add('Validado')
         flagCuadrado = true;
         BotonFlag = true;
-        console.log(LadoCuadrado)
         if(flagEspesor) {
             BotonCotizar.classList.remove('btn-outline-secondary')
             BotonCotizar.classList.add('btn-primary');
@@ -119,7 +118,6 @@ LcuadradoInput.addEventListener("keypress", (e) => {
         LcuadradoInput.classList.add('Validado');
         flagCuadrado = true;
         BotonFlag = true;
-        console.log(LadoCuadrado)
         if(flagEspesor) {
             BotonCotizar.classList.remove('btn-outline-secondary')
             BotonCotizar.classList.add('btn-primary');
@@ -144,7 +142,6 @@ EspesorInput.addEventListener('click', () => {
 })
 EspesorInput.addEventListener('change', () => {
     let Esp = EspesorInput.value;
-    console.log(Esp, tipoAcero)
     if(tipoAcero == 1 || tipoAcero == 2) {
     ValidarEspor(Esp, tipoAcero);
     EspesorInput.value = Espesor;
@@ -162,7 +159,6 @@ EspesorInput.addEventListener('change', () => {
 EspesorInput.addEventListener('keypress', (e) => {
     if(e.key === "Enter") {
     let Esp = EspesorInput.value;
-    console.log(Esp, tipoAcero)
     if(tipoAcero == 1 || tipoAcero == 2) {
     ValidarEspor(Esp, tipoAcero);
     EspesorInput.value = Espesor;
@@ -177,11 +173,6 @@ EspesorInput.addEventListener('keypress', (e) => {
     }
 }
 })
-
-
-//BotonCotizar.innerHTML = '<button type="button" id="cotizar" class="btn btn-outline-secondary" disabled>Cotizar Platina</button>'
-//BotonCotizar.hidden
-// BotonCotizar.setAttribute('type', 'hidden');
 
 
 BotonCotizar.addEventListener("click", ()=> {
