@@ -10,6 +10,14 @@
 </head>
 <body>
 
+  <div class="container ">
+    <div class="row">
+      <div class="col">
+        <h1 class = "text-center" id="cotizador">Cotizador de Platinas</h1>
+      </div>
+    </div>
+    <div class="row">
+
     <div class="card-group">
   <div class="card">
     <img src="./imagenes/Cuadrada.JPG" class="card-img-top" alt="...">
@@ -18,32 +26,75 @@
       <p class="card-text">Para ingresar los parametros de la platina cuadrada que Ud desea haga "click" en el link inferior</p>
     </div>
     <div class="card-footer">
-      <a href="./paginas/cuadrada.html" id="Pcuadrada"  type="button" class="btn btn-primary">Cotizar Platina Cuadrada</a>
+      <button id="Pcuadrada"  type="button" class="btn btn-primary">Cotizar Platina Cuadrada</button>
     </div>
   </div>
   <div class="card">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="./imagenes/redonda.jpg" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <h5 class="card-title">Platina Redonda</h5>
+      <p class="card-text">Para ingresar los parametros de la platina redonda que Ud desea haga "click" en el link inferior</p>
     </div>
     <div class="card-footer">
-      <small class="text-body-secondary">Last updated 3 mins ago</small>
+      <a href="./paginas/redonda.html" id="Predonda"  type="button" class="btn btn-primary">Cotizar Platina Redonda</a>
     </div>
   </div>
   <div class="card">
-    <img src="..." class="card-img-top" alt="...">
+    <img src="./imagenes/rectangular.JPG" class="card-img-top" alt="...">
     <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      <h5 class="card-title">Platina Rectangular</h5>
+      <p class="card-text">para ingresar los parametros de la platina Rectangular que Ud desea haga "click" en el link inferior</p>
     </div>
     <div class="card-footer">
-      <small class="text-body-secondary">Last updated 3 mins ago</small>
+      <button id="Prectangular"  type="button" class="btn btn-primary">Cotizar Platina Rectangular</button>
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead class = 'thead-dark'>
+        <th>Item</th>
+        <th>Platina</th>
+        <th>Acero</th>
+        <th>Lado/Diam</th>
+        <th>Lado2</th>
+        <th>Espesor</th>
+        <th>Corte U$D</th>
+        <th>Material U$D</th>
+        <th>cantidad</th>
+        <th>Unitario U$D</th>
+        <th>Subtotal U$D</th>
+        <th>Eliminar</th>
+      </thead>
+      <tbody id="items" class="table-striped">
+      </tbody>
+      <tfoot>
+        <tr id="ultimaFila">
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th id="totalText"></th>
+          <th id="total"></th>
+          <th id ='Vaciar'><button type ="button" class="btn btn-secondary" disabled>Vaciar!!</button></th>
+          <!--<th><button type="button" id="vaciarCarro" class="btn"> Vaciar!!! </button></th> -->
+        </tr>
+      </tfoot>
+
+    </table>
+  </div>
     
 </body>
-<script src="./javascript/espesores.js"></script>
-<script src="./app.js"></script>
+<script src="../javascript/mcarrito.js"></script>
+<script src="../javascript/carrito.js"></script>
+<script src="../javascript/precio.js"></script>
+<!-- <script src="../javascript/eventos.js"></script> -->
+<script src="../javascript/espesores.js"></script>
+<script src="../app.js"></script>
 </html>

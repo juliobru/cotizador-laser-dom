@@ -1,17 +1,43 @@
-let AceroCarbonoCheck =false;
-let AceroInoxCheck =false;
-let tipoAcero = 0;
-let flagCuadrado =false;
-let flagEspesor = false;
-let tipoPlatina = 1;
-let PrecioCorte;
-let PrecioMaterial;
+//import { Swal } from "./sweetalert2";
+
+
 let LadoCuadrado;
-let Espesor;
-let cantidad;
-let BotonFlag = false;
+let flagCuadrado =false;
+let BotonFlag = false; // abilita boton cotizar
+let formaPlatina;
+let Lado2;
+let Lado2Input;
+let ladoA;
+let ladoB;
+
+console.log(pageActual)
+if(pageActual == 'cuadrada') {
+
+    let TituloCuadrada = document.getElementById('PlatinaCuadradah1');
+    let imagen = document.getElementById('tipoPlatina');
+    let Lado2Ver = document.getElementById('Lado2');
+    let Lado2Etiqueta = document.getElementById('etiquetaRect')
+    tipoPlatina = Number(localStorage.getItem(tipoPlatina))
+    console.log(tipoPlatina);
+
+    if(tipoPlatina == 1) {
+    TituloCuadrada.innerText = 'Platina Cuadrada';
+    imagen.setAttribute('src', '../imagenes/Cuadrada.JPG');
+    Lado2Ver.setAttribute('type', 'hidden');
+    formaPlatina = 'Cuadrada';
+    
+    }
+    if(tipoPlatina == 2) {
+        TituloCuadrada.innerText = 'Platina Rectangular';
+        imagen.setAttribute('src', '../imagenes/rectangular.JPG');
+        Lado2Etiqueta.innerText = 'Lado (L2) en mm (entre 0 y 1500)';
+        formaPlatina = 'Rectangular';
+    }
+
+
 
 let formularioInputs = document.getElementById("PlatinaCuadrada");
+console.log(formularioInputs)
 formularioInputs.addEventListener("keypress", function(event)  {
     if(event.key === "Enter") {
     event.preventDefault();
@@ -22,10 +48,14 @@ let CantidadInput = document.getElementById('cantidad');
     CantidadInput.setAttribute('type', 'hidden');
     
 let BotonCotizar = document.getElementById("cotizar");
-BotonCotizar.classList.add('btn-outline-secondary');
+BotonCotizar.classList.add('btn-secondary');
 
 let BotonCarritoCuad = document.getElementById("carritoCuad");
-BotonCarritoCuad.classList.add('btn-outline-secondary')
+BotonCarritoCuad.classList.add('btn-secondary');
+
+let BotonFlagCarrito = false;
+
+
 
 
 
@@ -85,10 +115,15 @@ let LcuadradoInput = document.getElementById('Lcuadrado')
 LcuadradoInput.addEventListener('change', () => {
     LadoCuadrado = LcuadradoInput.value;
     if ((LadoCuadrado <= 0) || (LadoCuadrado > 1500) || (isNaN(LadoCuadrado))) {
-        alert("el valor no es válido, debe ser 0 < L < 1500 mm");
+        Swal.fire({
+            title: 'Error!',
+            text: 'el valor no es válido, debe ser 0 < L < 1500 mm',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          })
         LcuadradoInput.value = '';
         flagCuadrado = false;
-        BotonCotizar.classList.add('btn-outline-secondary')
+        BotonCotizar.classList.add('btn-secondary')
         BotonCotizar.classList.remove('btn-primary');
 
     } else {
@@ -97,7 +132,7 @@ LcuadradoInput.addEventListener('change', () => {
         flagCuadrado = true;
         BotonFlag = true;
         if(flagEspesor) {
-            BotonCotizar.classList.remove('btn-outline-secondary')
+            BotonCotizar.classList.remove('btn-secondary')
             BotonCotizar.classList.add('btn-primary');
         }
 
@@ -108,10 +143,15 @@ LcuadradoInput.addEventListener("keypress", (e) => {
     if(e.key === "Enter") {
     let LadoCuadrado = LcuadradoInput.value;
     if ((LadoCuadrado <= 0) || (LadoCuadrado > 1500) || (isNaN(LadoCuadrado))) {
-        alert("el valor no es válido, debe ser 0 < L < 1500 mm");
+        Swal.fire({
+            title: 'Error!',
+            text: 'el valor no es válido, debe ser 0 < L < 1500 mm',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          })
         LcuadradoInput.value = '';
         flagCuadrado = false;
-        BotonCotizar.classList.add('btn-outline-secondary')
+        BotonCotizar.classList.add('btn-secondary')
         BotonCotizar.classList.remove('btn-primary');
     } else {
         LadoCuadrado = parseFloat(LcuadradoInput.value);
@@ -119,13 +159,82 @@ LcuadradoInput.addEventListener("keypress", (e) => {
         flagCuadrado = true;
         BotonFlag = true;
         if(flagEspesor) {
-            BotonCotizar.classList.remove('btn-outline-secondary')
+            BotonCotizar.classList.remove('btn-secondary')
             BotonCotizar.classList.add('btn-primary');
         }
 
     }
 }
 })
+Lado2Input = document.getElementById('Lado2');
+if(tipoPlatina == 2) {
+
+    
+    console.log(Lado2Input)
+
+    Lado2Input.addEventListener('change', () => {
+        Lado2 = Lado2Input.value;
+        console.log(Lado2)
+        if ((Lado2 <= 0) || (Lado2 > 1500) || (isNaN(Lado2))) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'el valor no es válido, debe ser 0 < L < 1500 mm',
+                icon: 'error',
+                confirmButtonText: 'OK'
+              })
+            
+            Lado2Input.value = '';
+            flagRectangulo = false;
+            BotonCotizar.classList.add('btn-secondary')
+            BotonCotizar.classList.remove('btn-primary');
+    
+        } else {
+            Lado2 = parseFloat(Lado2Input.value);
+            ladoA = Lado2
+            ladoB = LadoCuadrado
+            Lado2Input.classList.add('Validado');
+            flagRectangulo = true;
+            BotonFlag = true;
+            if(flagEspesor) {
+                BotonCotizar.classList.remove('btn-secondary')
+                BotonCotizar.classList.add('btn-primary');
+            }
+    
+        }
+    })
+    
+    Lado2Input.addEventListener("keypress", (e) => {
+        console.log(Lado2Input)
+        if(e.key === "Enter") {
+        Lado2 = Lado2Input.value;
+        if ((Lado2 <= 0) || (Lado2 > 1500) || (isNaN(Lado2))) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'el valor no es válido, debe ser 0 < L < 1500 mm',
+                icon: 'error',
+                confirmButtonText: 'OK'
+              })
+            Lado2Input.value = '';
+            flagRectangulo = false;
+            BotonCotizar.classList.add('btn-secondary')
+            BotonCotizar.classList.remove('btn-primary');
+        } else {
+            Lado2 = parseFloat(Lado2Input.value);
+            ladoA = Lado2;
+            ladoB = LadoCuadrado;
+            Lado2Input.classList.add('Validado');
+            flagRectangulo = true;
+            BotonFlag = true;
+            if(flagEspesor) {
+                BotonCotizar.classList.remove('btn-secondary')
+                BotonCotizar.classList.add('btn-primary');
+            }
+    
+        }
+    }
+    })   
+
+}
 
 
 
@@ -137,7 +246,7 @@ EspesorInput.addEventListener('click', () => {
     Etiqueta[3].textContent = 'Espesor de la Platina en mm.';
     EspesorInput.value = '';
     flagEspesor = false;
-    BotonCotizar.classList.add('btn-outline-secondary')
+    BotonCotizar.classList.add('btn-secondary')
     BotonCotizar.classList.remove('btn-primary');
 })
 EspesorInput.addEventListener('change', () => {
@@ -150,7 +259,7 @@ EspesorInput.addEventListener('change', () => {
     flagEspesor = true;
     BotonFlag = true;
     if(flagCuadrado) {
-        BotonCotizar.classList.remove('btn-outline-secondary')
+        BotonCotizar.classList.remove('btn-secondary')
         BotonCotizar.classList.add('btn-primary');
     }
     }
@@ -167,7 +276,7 @@ EspesorInput.addEventListener('keypress', (e) => {
     flagEspesor = true;
     BotonFlag = true;
     if(flagCuadrado) {
-        BotonCotizar.classList.remove('btn-outline-secondary')
+        BotonCotizar.classList.remove('btn-secondary')
         BotonCotizar.classList.add('btn-primary');
     }
     }
@@ -176,7 +285,7 @@ EspesorInput.addEventListener('keypress', (e) => {
 
 
 BotonCotizar.addEventListener("click", ()=> {
-    if(flagCuadrado && flagEspesor && BotonFlag) {
+    if((flagCuadrado || flagRectangulo) && flagEspesor && BotonFlag) {
         Precio(Espesor, tipoPlatina, tipoAcero)
             Etiqueta[8].textContent = `Precio Material U$D ${PrecioMaterial} Precio Corte = U$D ${PrecioCorte}`
             PrecioCorte = parseFloat(PrecioCorte);
@@ -194,9 +303,10 @@ CantidadInput.addEventListener('change', ()=> {
         let Subtotal = ((PrecioCorte + PrecioMaterial)*cantidad).toFixed(2);
         let IVA = (Subtotal*0.22).toFixed(2);
         Etiqueta[10].textContent = `Total U$D ${Subtotal} + IVA U$D ${IVA}`
-        BotonCarritoCuad.classList.remove('btn-outline-secondary')
+        BotonCarritoCuad.classList.remove('btn-secondary')
         BotonCarritoCuad.classList.add('btn-primary');
-        BotonCotizar.classList.add('btn-outline-secondary')
+        
+        BotonCotizar.classList.add('btn-secondary')
         BotonCotizar.classList.remove('btn-primary');
         BotonFlag =false;
         BotonFlagCarrito = true;
@@ -207,8 +317,16 @@ CantidadInput.addEventListener('change', ()=> {
 
 BotonCarritoCuad.addEventListener('click', () => {
     if(BotonFlagCarrito) {
-    Dim1 = LadoCuadrado;
-    Dim2 = 0;
+        switch(tipoPlatina){
+            case 1 :
+            Dim1 = LadoCuadrado;
+            Dim2 = 0;
+            break;
+            case 2 :
+                Dim1 = LadoCuadrado;
+                Dim2 = Lado2;
+            break;
+        }
     switch(tipoAcero) {
         case 1 :
             Acero = "Inoxidable";
@@ -218,26 +336,33 @@ BotonCarritoCuad.addEventListener('click', () => {
         break;
     }
 
-    carrito.push(new Platinadef('Cuadrada',Acero,Dim1,Dim2,Espesor,PrecioCorte,PrecioMaterial,cantidad));
+    
+
+
+    carrito.push(new Platinadef(formaPlatina,Acero,Dim1,Dim2,Espesor,PrecioCorte,PrecioMaterial,cantidad));
     localStorage.setItem('carrito',JSON.stringify(carrito));
     
     console.table(carrito)
-    mostrarCarrito();
+    mostrarCarrito('cuadrada');
     limpiar(formularioInputs)
 }
-})
+} 
+
+)
 
 function limpiar(form) {
     form.reset();
-    BotonCotizar.classList.add('btn-outline-secondary')
+    BotonCotizar.classList.add('btn-secondary')
     BotonCotizar.classList.remove('btn-primary');
-    BotonCarritoCuad.classList.add('btn-outline-secondary')
+    BotonCarritoCuad.classList.add('btn-secondary')
     BotonCarritoCuad.classList.remove('btn-primary');
+ 
     Etiqueta[8].textContent = '';
     Etiqueta[9].textContent = '';
     Etiqueta[10].textContent = '';
     CantidadInput.setAttribute('type', 'hidden');
     EspesorInput.setAttribute('type', 'hidden');
+  
     Etiqueta[3].textContent = 'Debe seleccionar material previo a espesor';
     flagCuadrado =false;
     flagEspesor = false; 
@@ -245,14 +370,8 @@ function limpiar(form) {
     BotonFlagCarrito = false;
 }
 
-let vaciarcarrito = document.getElementById('vaciarCarro');
-vaciarcarrito.addEventListener('click', ()=> {
-    carrito = [];
-    localStorage.removeItem('carrito')
-    let tabla = document.getElementById('items');
-    tabla.innerHTML = '';
+}
 
-})
 
 
 

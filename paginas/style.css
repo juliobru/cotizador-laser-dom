@@ -11,6 +11,10 @@ form {
     justify-content: left;
 }
 
+form #cantidadRedonda,
+form #EspesorRedonda,
+form #Diametro,
+form #Lado2,
 form #Lcuadrado,
 form #Espesor,
 form #cantidad {
@@ -21,11 +25,15 @@ form #cantidad {
     text-align: left;
 }
 
+
+form #N-agujeros,
+form #D-centros,
+form #d-mmR,
 form #d-mm,
 form #SV,
 form #SH,
 form #R {
-    margin: 5px 5px 5px 2%;
+    margin: 5px 5px 1px 2%;
     padding: 0;
     width: 8%;
     display: inline;
@@ -38,6 +46,8 @@ form #R {
     text-align: center !important;
 }
 
+form #AceroInoxR,
+form #AceroCarbonoR,
 form #AceroInoxC,
 form #AceroCarbonoC {
     margin: 5px 5px 5px 5%;
@@ -52,9 +62,19 @@ form #AceroCarbonoC {
 form .parametro {
     display: flex;
     flex-direction: row;
+    margin: 1px;
+    align-content: center;
 }
 
 form .etiqueta {
+    padding: 5px;
+}
+
+form .etiquetaRect {
+    padding: 5px;
+}
+
+form .etiquetaRedonda {
     padding: 5px;
 }
 

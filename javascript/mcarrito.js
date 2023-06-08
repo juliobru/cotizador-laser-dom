@@ -1,5 +1,26 @@
+const total = document.getElementById('total')
+const totalText = document.getElementById('totalText')
 
-function mostrarCarrito() {
+let ultimaFila;
+let th;
+let Vaciar;
+
+//let ubicacionCuadrada = document.getElementById('PlatinaCuadrada')
+
+// let vaciarcarrito = document.getElementById('vaciarCarro');
+//vaciarcarrito.setAttribute('disable', true)
+//vaciarcarrito.classList.add('btn-secondary')
+
+function mostrarCarrito(page) {
+
+    if(pageant == page){
+        flagbotonVaciar = false
+    } else{
+        flagbotonVaciar = true;
+        pageant = page
+        localStorage.setItem('pageant', page)
+    }
+    console.log(pageant)
     let tabla = document.getElementById('items');
     
     tabla.innerHTML = '';
@@ -59,15 +80,80 @@ function mostrarCarrito() {
   btnEliminar.onclick = () => 
   {
     carrito.splice(index,1); 
-    mostrarCarrito();
+    mostrarCarrito(page);
     localStorage.setItem('carrito',JSON.stringify(carrito));
 }
-
 
   let tdEliminar = document.createElement('td')
   tdEliminar.appendChild(btnEliminar);
   row.appendChild(tdEliminar);
   tabla.appendChild(row);
-})}
+
+
+})
+total.innerText = (carrito.reduce((acumulador,item) => (acumulador = acumulador + parseFloat(item.parcialN)),0)).toFixed(2)
+console.log(total.innerText)
+
+
+
+
+
+
+//ultimaFila = document.getElementById('ultimaFila')
+//ultimaFila.innerHTML = '';
+//if( flagbotonVaciar == true) {
+ //  console.log(flagbotonVaciar)
+
+Vaciar = document.createElement('button');
+Vaciar.className = 'btn';
+Vaciar.textContent = 'Vaciar!!';
+Vaciar.setAttribute('disable', true)
+
+th = document.getElementById('Vaciar')
+th.innerHTML = ''
+
+
+th.appendChild(Vaciar)
+//console.log(th)
+
+//ultimaFila.appendChild(th)
+//flagbotonVaciar = false
+//}
+
+
+
+
+
+Vaciar.addEventListener('click', ()=> {
+    carrito = [];
+    localStorage.removeItem('carrito')
+    let tabla = document.getElementById('items');
+    tabla.innerHTML = '';
+    totalText.textContent = "";
+    total.innerText = ''; //(0).toFixed(2);
+    Vaciar.setAttribute('disable', true)
+    Vaciar.classList.remove('btn-danger')
+    Vaciar.classList.add('btn-secondary')
+    
+
+})
+
+console.log(total.innerText)
+
+if(total.innerText > 0) {
+    totalText.textContent = "Total : ";
+    Vaciar.removeAttribute('disable')
+    Vaciar.classList.remove('btn-secondary')
+    Vaciar.classList.add('btn-danger')
+} else {
+    Vaciar.setAttribute('disable', true)
+    Vaciar.classList.remove('btn-danger')
+    Vaciar.classList.add('btn-secondary')
+    total.innerText = ""
+    //flagbotonVaciar = true;
+}
+
+}
+
 
 

@@ -21,13 +21,34 @@ function ValidarEspor(Esp, tipo) {
     let EspCarbMax = EspCarbono[EspCarbCant - 1];
     let siguiente = 0;
 
-
+  /*  Swal.fire( {
+        title: 'Error!',
+        text: `el espesor debe ser mayor que {EspInoxMin} y menor que {EspInoxMax}\ningrese otro espesor en mm:`,
+        input: 'text',
+        icon: 'error',
+        confirmButtonText: 'Enviar'
+    })*/
 
     switch (tipo) {
         case 1:
             while (Esp < EspInoxMin || Esp > EspInoxMax || isNaN(Esp)) {
-                Esp = Number(prompt(`el espesor debe ser mayor que ${EspInoxMin} y menor que ${EspInoxMax}\ningrese otro espesor en mm:`))
-            }
+                
+                async function EspCorrecto() {
+
+                    const { value: nuevoesp} = await Swal.fire( {
+                            title: 'Error!',
+                            text: `el espesor debe ser mayor que {EspInoxMin} y menor que {EspInoxMax}\ningrese otro espesor en mm:`,
+                            input: 'text',
+                            icon: 'error',
+                            confirmButtonText: 'Ingresar'
+                        })
+                        Esp = Number(nuevoesp)
+                    }        
+                            
+                                
+                            
+                                               
+            }            
             for (let i = 0; i < EspInoxCant; i++) {
                 siguiente = i + 1;
 
