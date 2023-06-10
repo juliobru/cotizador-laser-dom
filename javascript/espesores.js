@@ -5,50 +5,116 @@ que se mantienen en catálogo.
 recibiendo el material deseado y el espesor que intenta utilizar el cliente, verifica si es un espesor normalizado,
 o en caso que el cliente ingresó otro espesor le propone uno por encima y otro por debajo */
 
+const EspInox = [0.9, 1, 1.2, 1.5, 1.8, 2, 2.5, 3, 4, 5, 6, 8, 10, 12, 15, 20, 22, 25];
+const EspCarbono = [0.7, 0.9, 1.1, 1.25, 1.6, 1.8, 2.0, 2.25, 2.51, 3.2, 4.75, 6.35, 7.94, 9.32, 12.7, 15.88, 16.05, 22.22, 25.4];
+
+let EspInoxMin = EspInox[0];
+let EspInoxCant = EspInox.length;
+let EspInoxMax = EspInox[EspInoxCant - 1];
+
+let EspCarbMin = EspCarbono[0];
+let EspCarbCant = EspCarbono.length;
+let EspCarbMax = EspCarbono[EspCarbCant - 1];
+let siguiente = 0;
+
+/*let Esp = 0.5;
+async function obtenerInput(Esp) {
+    return new Promise((resolve, reject) => {
+     Swal.fire({
+        title: 'Ingresa un valor',
+        input: 'text',
+        inputLabel: `el espesor debe ser mayor que ${EspInoxMin} y menor que ${EspInoxMax}\ningrese otro espesor en mm:`,
+        inputPlaceholder: Esp ,
+        icon: 'error',
+        confirmButtonText: 'Enviar',
+       // showCancelButton: true,
+       // confirmButtonText: 'Aceptar',
+       // cancelButtonText: 'Cancelar',
+        allowOutsideClick: false,
+        inputValidator: (value) => {
+          if (!value) {
+            return 'Debes ingresar un valor';
+          }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+          resolve(result.value);
+        } else {
+          reject(new Error('El usuario canceló la entrada'));
+        }
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+  }  
+
+ (async (Esp) => {
+    let valor = Esp;
+   while (valor < 0.9 || valor > 25.4 || isNaN(valor)) {
+     try {
+       valor = await obtenerInput();
+     } catch (error) {
+       console.log('Ocurrió un error:', error);
+       // Puedes agregar lógica adicional en caso de error
+     }
+   }
+   Esp = Number(valor);
+   console.log('El usuario ingresó:', Esp,valor);
+ })();*/
 
 
 function ValidarEspor(Esp, tipo) {
 
-    const EspInox = [0.9, 1, 1.2, 1.5, 1.8, 2, 2.5, 3, 4, 5, 6, 8, 10, 12, 15, 20, 22, 25];
-    const EspCarbono = [0.7, 0.9, 1.1, 1.25, 1.6, 1.8, 2.0, 2.25, 2.51, 3.2, 4.75, 6.35, 7.94, 9.32, 12.7, 15.88, 16.05, 22.22, 25.4];
 
-    let EspInoxMin = EspInox[0];
-    let EspInoxCant = EspInox.length;
-    let EspInoxMax = EspInox[EspInoxCant - 1];
 
-    let EspCarbMin = EspCarbono[0];
-    let EspCarbCant = EspCarbono.length;
-    let EspCarbMax = EspCarbono[EspCarbCant - 1];
-    let siguiente = 0;
+     
+/* function RevisarEsp() {
+    return new Promise(resolve => {
+  
+        const { value: nuevoesp} = Swal.fire( {
+                title: 'Error!',
+                input: 'text',
+                inputLabel: `el espesor debe ser mayor que {EspInoxMin} y menor que {EspInoxMax}\ningrese otro espesor en mm:`,
+                icon: 'error',
+                confirmButtonText: 'Enviar'
+            }).then((result) => {
+                resolve(result.isConfirmed);
+                Esp = parseInt(nuevoesp,3);
+            })
+        });
+    } */
 
-  /*  Swal.fire( {
-        title: 'Error!',
-        text: `el espesor debe ser mayor que {EspInoxMin} y menor que {EspInoxMax}\ningrese otro espesor en mm:`,
-        input: 'text',
-        icon: 'error',
-        confirmButtonText: 'Enviar'
-    })*/
+
+      
+      
+
+      
+
+
+
 
     switch (tipo) {
         case 1:
-            while (Esp < EspInoxMin || Esp > EspInoxMax || isNaN(Esp)) {
-                
-                async function EspCorrecto() {
+          while (Esp < EspInoxMin || Esp > EspInoxMax || isNaN(Esp)) {
+            //Swal.fire(`el espesor debe ser mayor que ${EspCarbMin} y menor que ${EspCarbMax}\ningrese otro espesor en mm:`);
+            //let Etiqueta = document.getElementsByClassName('etiqueta')
+            //Etiqueta[3].textContent = `el espesor debe ser mayor que ${EspCarbMin} y menor que ${EspCarbMax}\ningrese otro espesor en mm:`;
+            //Esp = Number(prompt(`el espesor debe ser mayor que ${EspInoxMin} y menor que ${EspInoxMax}\ningrese otro espesor en mm:`));
+          
+        
+        
+        
+        
+        
+        
+        }
 
-                    const { value: nuevoesp} = await Swal.fire( {
-                            title: 'Error!',
-                            text: `el espesor debe ser mayor que {EspInoxMin} y menor que {EspInoxMax}\ningrese otro espesor en mm:`,
-                            input: 'text',
-                            icon: 'error',
-                            confirmButtonText: 'Ingresar'
-                        })
-                        Esp = Number(nuevoesp)
-                    }        
+
                             
                                 
                             
                                                
-            }            
+                        
             for (let i = 0; i < EspInoxCant; i++) {
                 siguiente = i + 1;
 

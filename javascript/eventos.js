@@ -251,7 +251,48 @@ EspesorInput.addEventListener('click', () => {
 })
 EspesorInput.addEventListener('change', () => {
     let Esp = EspesorInput.value;
+
+
+
+
     if(tipoAcero == 1 || tipoAcero == 2) {
+
+       if(Esp < 0.7 || Esp > 25.4|| isNaN(Esp)) {
+            //Etiqueta[3].textContent = 'el espesor debe ser mayor que 0.7 y menor que 25.5\ningrese otro espesor en mm:'
+            revisarEsp(Esp);
+            flagEspesorrev = true;
+            /*    if(flagEspesorrev) {
+                    ValidarEspor(Esp, tipoAcero);
+                    EspesorInput.value = Espesor;
+                    Etiqueta[3].textContent = `Espesor NORMALIZADO para ${Acero} en mm`;
+                    EspesorInput.classList.add('Validado')
+                    flagEspesor = true;
+                    BotonFlag = true;
+                    if(flagCuadrado) {
+                        BotonCotizar.classList.remove('btn-secondary')
+                        BotonCotizar.classList.add('btn-primary');
+                    }
+                } */
+       }else { 
+        Ajusteform(Esp, tipoAcero)
+
+    }
+/*    if(flagEspesor == false && flagEspesorrev == true) {
+        ValidarEspor(Esp, tipoAcero);
+        EspesorInput.value = Espesor;
+        Etiqueta[3].textContent = `Espesor NORMALIZADO para ${Acero} en mm`;
+        EspesorInput.classList.add('Validado')
+        flagEspesor = true;
+        BotonFlag = true;
+        if(flagCuadrado) {
+            BotonCotizar.classList.remove('btn-secondary')
+            BotonCotizar.classList.add('btn-primary');
+        }
+    } */
+    }
+})
+
+function Ajusteform(Esp, tipoAcero) {
     ValidarEspor(Esp, tipoAcero);
     EspesorInput.value = Espesor;
     Etiqueta[3].textContent = `Espesor NORMALIZADO para ${Acero} en mm`;
@@ -262,23 +303,52 @@ EspesorInput.addEventListener('change', () => {
         BotonCotizar.classList.remove('btn-secondary')
         BotonCotizar.classList.add('btn-primary');
     }
-    }
-})
+
+}
+
+
+
+
 
 EspesorInput.addEventListener('keypress', (e) => {
     if(e.key === "Enter") {
     let Esp = EspesorInput.value;
     if(tipoAcero == 1 || tipoAcero == 2) {
-    ValidarEspor(Esp, tipoAcero);
-    EspesorInput.value = Espesor;
-    Etiqueta[3].textContent = `Espesor NORMALIZADO para ${Acero} en mm`;
-    EspesorInput.classList.add('Validado');
-    flagEspesor = true;
-    BotonFlag = true;
-    if(flagCuadrado) {
-        BotonCotizar.classList.remove('btn-secondary')
-        BotonCotizar.classList.add('btn-primary');
+
+     if(Esp < 0.7 || Esp > 25.4|| isNaN(Esp)) {
+           // Etiqueta[3].textContent = 'el espesor debe ser mayor que 0.7 y menor que 25.5\ningrese otro espesor en mm:'
+           revisarEsp(Esp);
+           flagEspesorrev = true;
+/*           if(flagEspesorrev) {
+                ValidarEspor(Esp, tipoAcero);
+                EspesorInput.value = Espesor;
+                Etiqueta[3].textContent = `Espesor NORMALIZADO para ${Acero} en mm`;
+                EspesorInput.classList.add('Validado')
+                flagEspesor = true;
+                BotonFlag = true;
+                    if(flagCuadrado) {
+                        BotonCotizar.classList.remove('btn-secondary')
+                        BotonCotizar.classList.add('btn-primary');
+                    }
+                } */
+     }else {
+
+        Ajusteform(Esp, tipoAcero)
     }
+/*    if(flagEspesor == false && flagEspesorrev == true) {
+        ValidarEspor(Esp, tipoAcero);
+        EspesorInput.value = Espesor;
+        Etiqueta[3].textContent = `Espesor NORMALIZADO para ${Acero} en mm`;
+        EspesorInput.classList.add('Validado')
+        flagEspesor = true;
+        BotonFlag = true;
+        if(flagCuadrado) {
+            BotonCotizar.classList.remove('btn-secondary')
+            BotonCotizar.classList.add('btn-primary');
+        }
+    } */
+
+
     }
 }
 })
