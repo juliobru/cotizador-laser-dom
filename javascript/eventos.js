@@ -20,6 +20,8 @@ if(pageActual == 'cuadrada') {
     let imagen = document.getElementById('tipoPlatina');
     let Lado2Ver = document.getElementById('Lado2');
     let Lado2Etiqueta = document.getElementById('etiquetaRect')
+    let REtiqueta = document.getElementById('R');
+    let Etiqueta = document.getElementsByClassName('etiqueta')
     tipoPlatina = Number(localStorage.getItem('tipoPlatina'))
     console.log(tipoPlatina);
 
@@ -28,6 +30,7 @@ if(pageActual == 'cuadrada') {
     imagen.setAttribute('src', '../imagenes/Cuadrada.JPG');
     Lado2Ver.setAttribute('type', 'hidden');
     formaPlatina = 'Cuadrada';
+    Etiqueta[2].textContent= 'Lado (L) en mm (entre 0 y 1500)'
     
     }
     if(tipoPlatina == 2) {
@@ -37,7 +40,17 @@ if(pageActual == 'cuadrada') {
         formaPlatina = 'Rectangular';
     }
 
-
+    if(tipoPlatina == 3) {
+        TituloCuadrada.innerText = 'Platina Circular';
+        imagen.setAttribute('src', '../imagenes/redonda.jpg');
+        Lado2Ver.setAttribute('type', 'hidden');
+        formaPlatina = 'Redonda';
+        Etiqueta[2].textContent= 'Diámetro (D) en mm (entre 0 y 1500)';
+        Etiqueta[5].textContent= 'D-Centros mm';
+        Etiqueta[6].textContent= 'Número agujeros';
+        Etiqueta[7].textContent= '';
+        REtiqueta.setAttribute('type', 'hidden');
+    }
 
 let formularioInputs = document.getElementById("PlatinaCuadrada");
 console.log(formularioInputs)
@@ -64,7 +77,7 @@ let BotonFlagCarrito = false;
 
 let EspesorInput = document.getElementById('Espesor')
     EspesorInput.setAttribute('type', 'hidden');
-let Etiqueta = document.getElementsByClassName('etiqueta')
+
     Etiqueta[3].textContent = 'Debe seleccionar material previo a espesor';
     Etiqueta[9].textContent = '';
 
@@ -137,6 +150,9 @@ LcuadradoInput.addEventListener('change', () => {
 
     } else {
         LadoCuadrado = parseFloat(LcuadradoInput.value);
+        if(tipoPlatina == 3) {
+            Diametro = LadoCuadrado;
+        }
         LcuadradoInput.classList.add('Validado')
         flagCuadrado = true;
         BotonFlag = true;
@@ -164,6 +180,9 @@ LcuadradoInput.addEventListener("keypress", (e) => {
         BotonCotizar.classList.remove('btn-primary');
     } else {
         LadoCuadrado = parseFloat(LcuadradoInput.value);
+        if(tipoPlatina == 3) {
+            Diametro = LadoCuadrado;
+        }
         LcuadradoInput.classList.add('Validado');
         flagCuadrado = true;
         BotonFlag = true;
@@ -365,6 +384,10 @@ BotonCarritoCuad.addEventListener('click', () => {
             case 2 :
                 Dim1 = LadoCuadrado;
                 Dim2 = Lado2;
+            break;
+            case 3 :
+                Dim1 = Diametro;
+                Dim2 = 0;
             break;
         }
     switch(tipoAcero) {

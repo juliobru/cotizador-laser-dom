@@ -26,14 +26,18 @@ let PlatinaCuad = document.getElementById('Pcuadrada');
 console.log(PlatinaCuad);
 let PlatinaRect = document.getElementById('Prectangular');
 console.log(PlatinaRect);
-
+let PlatinaRed = document.getElementById('Predonda');
+console.log(PlatinaRed);
 
 window.addEventListener('DOMContentLoaded', traerItems);
 paginaActual = String(window.location.href);
 console.log(paginaActual)
+    if(paginaActual == ''){
+        pageant = 'index';
+    }
 traerItems()
 
-//if(pageant == 'index') {
+if(pageant == 'index') {
 
     PlatinaCuad.onclick = function() {
     localStorage.setItem('tipoPlatina','1')
@@ -44,7 +48,14 @@ traerItems()
         localStorage.setItem('tipoPlatina','2')
         location.href = "./paginas/cuadrada.html"
     }
-//}
+
+    PlatinaRed.onclick = function() {
+        localStorage.setItem('tipoPlatina','3')
+        location.href = "./paginas/cuadrada.html"
+    }
+
+
+}
 
 
 function traerItems()  {
@@ -57,9 +68,9 @@ indexpage = paginaActual.search("index")
 if(indexpage != -1) {
     pageActual = 'index'
 }
-redondapage = paginaActual.search('redonda')
-if(redondapage != -1) {
-    pageActual = 'redonda'
+if (paginaActual == "http://127.0.0.1:5500/") {
+    pageActual = 'index';
+
 }
 
 
