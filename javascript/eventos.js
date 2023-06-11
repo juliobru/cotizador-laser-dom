@@ -20,7 +20,7 @@ if(pageActual == 'cuadrada') {
     let imagen = document.getElementById('tipoPlatina');
     let Lado2Ver = document.getElementById('Lado2');
     let Lado2Etiqueta = document.getElementById('etiquetaRect')
-    tipoPlatina = Number(localStorage.getItem(tipoPlatina))
+    tipoPlatina = Number(localStorage.getItem('tipoPlatina'))
     console.log(tipoPlatina);
 
     if(tipoPlatina == 1) {

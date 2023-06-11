@@ -9,13 +9,16 @@ let Espesor;
 let cantidad;
 let pageActual = "";
 let paginaActual;
-let pageant= '';
+let pageant= 'index';
 
 
 let carrito =[];
 
 let carritoVacio = localStorage.getItem('carrito');
 pageant =localStorage.getItem('pageant');
+if(pageant == ''){
+    pageant = 'index'
+}
 console.log(carritoVacio)
 console.log(pageant)
 
@@ -27,20 +30,21 @@ console.log(PlatinaRect);
 
 window.addEventListener('DOMContentLoaded', traerItems);
 paginaActual = String(window.location.href);
+console.log(paginaActual)
 traerItems()
 
-if(pageActual == 'index') {
+//if(pageant == 'index') {
 
     PlatinaCuad.onclick = function() {
-    localStorage.setItem(tipoPlatina,1)
+    localStorage.setItem('tipoPlatina','1')
         location.href = "./paginas/cuadrada.html"
     }
 
     PlatinaRect.onclick = function() {
-        localStorage.setItem(tipoPlatina,2)
+        localStorage.setItem('tipoPlatina','2')
         location.href = "./paginas/cuadrada.html"
     }
-}
+//}
 
 
 function traerItems()  {
