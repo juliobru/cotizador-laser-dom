@@ -12,9 +12,7 @@ async function obtenerInput(Esp) {
         inputPlaceholder: Esp ,
         icon: 'error',
         confirmButtonText: 'Enviar',
-       // showCancelButton: true,
-       // confirmButtonText: 'Aceptar',
-       // cancelButtonText: 'Cancelar',
+
         allowOutsideClick: false,
         inputValidator: (value) => {
           if (!value) {
@@ -44,7 +42,7 @@ function revisarEsp(Esp) {
        console.log(valor);
      } catch (error) {
        console.log('Ocurrió un error:', error);
-       // Puedes agregar lógica adicional en caso de error
+      
      }
    }
    Esp = Number(valor);

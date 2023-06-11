@@ -16,115 +16,34 @@ let EspCarbMin = EspCarbono[0];
 let EspCarbCant = EspCarbono.length;
 let EspCarbMax = EspCarbono[EspCarbCant - 1];
 let siguiente = 0;
+let OpEsp1;
+let OpEsp2;
 
-/*let Esp = 0.5;
-async function obtenerInput(Esp) {
-    return new Promise((resolve, reject) => {
-     Swal.fire({
-        title: 'Ingresa un valor',
-        input: 'text',
-        inputLabel: `el espesor debe ser mayor que ${EspInoxMin} y menor que ${EspInoxMax}\ningrese otro espesor en mm:`,
-        inputPlaceholder: Esp ,
-        icon: 'error',
-        confirmButtonText: 'Enviar',
-       // showCancelButton: true,
-       // confirmButtonText: 'Aceptar',
-       // cancelButtonText: 'Cancelar',
-        allowOutsideClick: false,
-        inputValidator: (value) => {
-          if (!value) {
-            return 'Debes ingresar un valor';
-          }
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-          resolve(result.value);
-        } else {
-          reject(new Error('El usuario canceló la entrada'));
-        }
-      }).catch((error) => {
-        reject(error);
-      });
-    });
-  }  
 
- (async (Esp) => {
-    let valor = Esp;
-   while (valor < 0.9 || valor > 25.4 || isNaN(valor)) {
-     try {
-       valor = await obtenerInput();
-     } catch (error) {
-       console.log('Ocurrió un error:', error);
-       // Puedes agregar lógica adicional en caso de error
-     }
-   }
-   Esp = Number(valor);
-   console.log('El usuario ingresó:', Esp,valor);
- })();*/
 
 
 function ValidarEspor(Esp, tipo) {
 
 
-
-     
-/* function RevisarEsp() {
-    return new Promise(resolve => {
-  
-        const { value: nuevoesp} = Swal.fire( {
-                title: 'Error!',
-                input: 'text',
-                inputLabel: `el espesor debe ser mayor que {EspInoxMin} y menor que {EspInoxMax}\ningrese otro espesor en mm:`,
-                icon: 'error',
-                confirmButtonText: 'Enviar'
-            }).then((result) => {
-                resolve(result.isConfirmed);
-                Esp = parseInt(nuevoesp,3);
-            })
-        });
-    } */
-
-
-      
-      
-
-      
-
-
-
-
     switch (tipo) {
         case 1:
-          while (Esp < EspInoxMin || Esp > EspInoxMax || isNaN(Esp)) {
-            //Swal.fire(`el espesor debe ser mayor que ${EspCarbMin} y menor que ${EspCarbMax}\ningrese otro espesor en mm:`);
-            //let Etiqueta = document.getElementsByClassName('etiqueta')
-            //Etiqueta[3].textContent = `el espesor debe ser mayor que ${EspCarbMin} y menor que ${EspCarbMax}\ningrese otro espesor en mm:`;
-            //Esp = Number(prompt(`el espesor debe ser mayor que ${EspInoxMin} y menor que ${EspInoxMax}\ningrese otro espesor en mm:`));
-          
-        
-        
-        
-        
-        
-        
-        }
-
-
-                            
-                                
-                            
-                                               
+                    
                         
             for (let i = 0; i < EspInoxCant; i++) {
                 siguiente = i + 1;
 
                 if (EspInox[i] == Esp) {           
                     Espesor = EspInox[i];
+                    falagNorm = false;
                     break;
                 } else {
 
                     if (Esp > EspInox[i] && Esp < EspInox[siguiente]) {
-                        let Seleccion = parseInt(prompt(`su espesor no es normalizado\nelija espesor normalizado\n ingrese 1 para ${EspInox[i]} mm\n ingrese 2 para ${EspInox[siguiente]} mm`));
+                        OpEsp1 = EspInox[i];
+                        OpEsp2 = EspInox[siguiente];
+                        falagNorm = true;
+                        //revisarEspNorm(Esp,OpEsp1,OpEsp2)
+                        /*let Seleccion = parseInt(prompt(`su espesor no es normalizado\nelija espesor normalizado\n ingrese 1 para ${EspInox[i]} mm\n ingrese 2 para ${EspInox[siguiente]} mm`));
                         while (Seleccion != 1 && Seleccion != 2) {
                             Seleccion = parseInt(prompt(`solo puede ingresar 1 o 2\n elija espesor normalizado\n ingrese 1 para ${EspInox[i]} mm\n ingrese 2 para ${EspInox[siguiente]} mm`));
                         }
@@ -135,7 +54,7 @@ function ValidarEspor(Esp, tipo) {
                             case 2:
                                 Espesor = EspInox[siguiente];
                                 break;
-                        }break;
+                        }*/break;
                     }
 
                 }
@@ -143,19 +62,22 @@ function ValidarEspor(Esp, tipo) {
             break;
 
         case 2:
-            while (Esp < EspCarbMin || Esp > EspCarbMax || isNaN(Esp)) {
-                Esp = Number(prompt(`el espesor debe ser mayor que ${EspCarbMin} y menor que ${EspCarbMax}\ningrese otro espesor en mm:`))
-            }
+
             for (let i = 0; i < EspCarbCant; i++) {
                 siguiente = i + 1;
  
                 if (EspCarbono[i] == Esp) {            
                     Espesor = EspCarbono[i];
+                    falagNorm = false;
                     break;
                 } else {
 
                     if (Esp > EspCarbono[i] && Esp < EspCarbono[siguiente]) {
-                        let Seleccion = parseInt(prompt(`su espesor no es normalizado\nelija espesor normalizado\n ingrese 1 para ${EspCarbono[i]} mm\n ingrese 2 para ${EspCarbono[siguiente]} mm`));
+                        OpEsp1 = EspCarbono[i];
+                        OpEsp2 = EspCarbono[siguiente];
+                        falagNorm = true;
+                        //revisarEspNorm(Esp,OpEsp1,OpEsp2)
+                        /*let Seleccion = parseInt(prompt(`su espesor no es normalizado\nelija espesor normalizado\n ingrese 1 para ${EspCarbono[i]} mm\n ingrese 2 para ${EspCarbono[siguiente]} mm`));
                         while (Seleccion != 1 && Seleccion != 2) {
                             Seleccion = parseInt(prompt(`solo puede ingresar 1 o 2\n elija espesor normalizado\n ingrese 1 para ${EspCarbono[i]} mm\n ingrese 2 para ${EspCarbono[siguiente]} mm`));
                         }
@@ -166,11 +88,16 @@ function ValidarEspor(Esp, tipo) {
                             case 2:
                                 Espesor = EspCarbono[siguiente];
                                 break;
-                        }break;
+                        }*/break;
                     }
 
                 }
             }
             break;
+    }
+    if(falagNorm) {
+    revisarEspNorm(Esp,OpEsp1,OpEsp2)
+    }else {
+        formStilo()
     }
 }

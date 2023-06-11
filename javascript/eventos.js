@@ -3,12 +3,15 @@
 
 let LadoCuadrado;
 let flagCuadrado =false;
+let flagRectangulo = false;
+// let flagEspesor = false;
 let BotonFlag = false; // abilita boton cotizar
 let formaPlatina;
 let Lado2;
 let Lado2Input;
 let ladoA;
 let ladoB;
+let flagValidarEspor = true;
 
 console.log(pageActual)
 if(pageActual == 'cuadrada') {
@@ -86,7 +89,8 @@ function intercon1(test1) {
             EspesorInput.setAttribute('type', 'hidden');
             Etiqueta[3].textContent = 'Debe seleccionar material previo a espesor';
             BotonCotizar.classList.add('btn-secondary')
-            BotonCotizar.classList.remove('btn-primary');  
+            BotonCotizar.classList.remove('btn-primary');
+            flagEspesor = false;  
 
         }
     
@@ -109,6 +113,7 @@ function intercon2(test1) {
         Etiqueta[3].textContent = 'Debe seleccionar material previo a espesor'; 
         BotonCotizar.classList.add('btn-secondary')
         BotonCotizar.classList.remove('btn-primary');
+        flagEspesor = false;
     }
 
     
@@ -256,7 +261,7 @@ EspesorInput.addEventListener('click', () => {
 EspesorInput.addEventListener('change', () => {
     let Esp = EspesorInput.value;
 
-
+    
 
 
     if(tipoAcero == 1 || tipoAcero == 2) {
@@ -266,6 +271,7 @@ EspesorInput.addEventListener('change', () => {
             revisarEsp(Esp);
             flagEspesorrev = true;
        }else { 
+        flagValidarEspor = true;
         Ajusteform(Esp, tipoAcero)
 
     }
@@ -274,20 +280,28 @@ EspesorInput.addEventListener('change', () => {
 })
 
 function Ajusteform(Esp, tipoAcero) {
+    if(flagValidarEspor) {
     ValidarEspor(Esp, tipoAcero);
+    } else {
+        formStilo()
+    }
+
+}
+
+function formStilo() {
     EspesorInput.value = Espesor;
     Etiqueta[3].textContent = `Espesor NORMALIZADO para ${Acero} en mm`;
     EspesorInput.classList.add('Validado')
     flagEspesor = true;
     BotonFlag = true;
+    flagValidarEspor = true;
+    console.log('test', flagValidarEspor)
     if(flagCuadrado) {
         BotonCotizar.classList.remove('btn-secondary')
         BotonCotizar.classList.add('btn-primary');
     }
 
 }
-
-
 
 
 
@@ -301,7 +315,7 @@ EspesorInput.addEventListener('keypress', (e) => {
            flagEspesorrev = true;
 
      }else {
-
+        flagValidarEspor = true;
         Ajusteform(Esp, tipoAcero)
     }
 
@@ -337,7 +351,7 @@ CantidadInput.addEventListener('change', ()=> {
         BotonFlag =false;
         BotonFlagCarrito = true;
     } else {
-        alert('la cantidad debe ser mayor que cero')
+        Swal.fire('la cantidad debe ser mayor que cero')
     }
 })
 

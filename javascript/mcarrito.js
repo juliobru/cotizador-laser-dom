@@ -79,9 +79,30 @@ function mostrarCarrito(page) {
 
   btnEliminar.onclick = () => 
   {
-    carrito.splice(index,1); 
-    mostrarCarrito(page);
-    localStorage.setItem('carrito',JSON.stringify(carrito));
+    
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¿Deseas Eliminar esta Platina?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, Eliminar',
+        confirmButtonColor: '#dc3045',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Acción de borrado
+          carrito.splice(index,1); 
+          mostrarCarrito(page);
+          localStorage.setItem('carrito',JSON.stringify(carrito));
+          console.log('Borrando...');
+        } else {
+          // Acción cancelada
+          console.log('Borrado cancelado.');
+        }
+      });
+      
+    
+
 }
 
   let tdEliminar = document.createElement('td')
@@ -125,15 +146,38 @@ th.appendChild(Vaciar)
 
 
 Vaciar.addEventListener('click', ()=> {
-    carrito = [];
-    localStorage.removeItem('carrito')
-    let tabla = document.getElementById('items');
-    tabla.innerHTML = '';
-    totalText.textContent = "";
-    total.innerText = ''; //(0).toFixed(2);
-    Vaciar.setAttribute('disable', true)
-    Vaciar.classList.remove('btn-danger')
-    Vaciar.classList.add('btn-secondary')
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¿Deseas Vaciar el Carrito!?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, Vaciar',
+        confirmButtonColor: '#dc3045',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Acción de borrado
+          carrito = [];
+          localStorage.removeItem('carrito')
+          let tabla = document.getElementById('items');
+          tabla.innerHTML = '';
+          totalText.textContent = "";
+          total.innerText = ''; //(0).toFixed(2);
+          Vaciar.setAttribute('disable', true)
+          Vaciar.classList.remove('btn-danger')
+          Vaciar.classList.add('btn-secondary')
+
+          console.log('Borrando...');
+        } else {
+          // Acción cancelada
+          console.log('Borrado cancelado.');
+        }
+      });
+      
+
+
+
     
 
 })
