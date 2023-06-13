@@ -10,9 +10,28 @@ let cantidad;
 let pageActual = "";
 let paginaActual;
 let pageant= 'index';
+let errorflag;
+
 
 
 let carrito =[];
+
+/*let textologin = document.getElementById('login');
+
+                              
+
+   flalogin = localStorage.getItem('flaglogin');
+   console.log(flalogin)
+
+
+if(flalogin) {
+    textologin.setAttribute('type','hidden');
+    //usuariologeado = `<h2>${usuario}</h2>`
+    //textologin.appendChild.usuariologeado
+}*/
+
+
+
 
 let carritoVacio = localStorage.getItem('carrito');
 pageant =localStorage.getItem('pageant');
@@ -31,6 +50,12 @@ console.log(PlatinaRed);
 
 window.addEventListener('DOMContentLoaded', traerItems);
 paginaActual = String(window.location.href);
+
+indexpage = paginaActual.search("index")
+if(indexpage != -1) {
+    pageant = 'index'
+}
+
 console.log(paginaActual)
     if(paginaActual == ''){
         pageant = 'index';
@@ -68,7 +93,7 @@ indexpage = paginaActual.search("index")
 if(indexpage != -1) {
     pageActual = 'index'
 }
-if (paginaActual == "http://127.0.0.1:5500/") {
+if (paginaActual == "http://127.0.0.1:5501/") {
     pageActual = 'index';
 
 }

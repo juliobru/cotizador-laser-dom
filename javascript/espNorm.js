@@ -9,8 +9,8 @@ async function EspNorm(Esp,OpEsp1,OpEsp2) {
   const inputOptions = new Promise((resolve) => {
     setTimeout(() => {
       resolve({
-        OpEsp1: `${OpEsp1}`,
-        OpEsp2: `${OpEsp2}`,
+        OpEsp1: `${OpEsp1} mm`,
+        OpEsp2: `${OpEsp2} mm`,
         
       })
     }, 1000)
